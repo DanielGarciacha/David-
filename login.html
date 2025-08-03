@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmprendeU | Autenticación</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand font-weight-bold" href="../index.html">EmprendeU</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>    
+
+    <main class="container flex-grow-1 d-flex justify-content-center align-items-center py-5">
+        <div class="card shadow-lg border-0 w-100" style="max-width: 450px;">
+            <div class="card-body p-5">
+                <h5 class="card-title text-center font-weight-bold mb-4" id="formTitle">Iniciar Sesión</h5>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail"><i class="fas fa-envelope mr-2"></i>Correo Electrónico</label>
+                        <input type="email" class="form-control shadow-sm" id="loginEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword"><i class="fas fa-lock mr-2"></i>Contraseña</label>
+                        <input type="password" class="form-control shadow-sm" id="loginPassword" required>
+                    </div>
+                    <button type="submit" class="btn btn-custom btn-block shadow">Ingresar</button>
+                    <p class="text-center mt-3 error-message text-danger" id="loginError"></p>
+                </form>
+                <p class="text-center mt-4"><a href="#" id="showRegister" class="font-weight-bold">¿No tienes cuenta? Regístrate aquí</a></p>
+                <form id="registerForm" class="d-none mt-4">
+                    <div class="form-group">
+                        <label for="registerFullName"><i class="fas fa-user mr-2"></i>Nombre Completo</label>
+                        <input type="text" class="form-control shadow-sm" id="registerFullName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPhone"><i class="fas fa-phone mr-2"></i>Teléfono</label>
+                        <input type="text" class="form-control shadow-sm" id="registerPhone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail"><i class="fas fa-envelope mr-2"></i>Correo Electrónico</label>
+                        <input type="email" class="form-control shadow-sm" id="registerEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword"><i class="fas fa-lock mr-2"></i>Contraseña</label>
+                        <input type="password" class="form-control shadow-sm" id="registerPassword" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerGender"><i class="fas fa-venus-mars mr-2"></i>Género</label>
+                        <select class="form-control shadow-sm" id="registerGender" required>
+                            <option value="Masculino">Masculino</option>
+                            <option value="Femenino">Femenino</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-custom btn-block shadow">Registrarse</button>
+                    <p class="text-center mt-3 error-message text-danger" id="registerError"></p>
+                    <p class="text-center mt-3 success-message text-success" id="registerSuccess"></p>
+                </form>
+                <p class="text-center mt-3 d-none" id="showLogin"><a href="#" class="font-weight-bold">¿Ya tienes cuenta? Inicia sesión aquí</a></p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="mt-auto text-center">
+        <div class="container">
+            <span class="d-block mb-2">&copy; 2023 EmprendeU. Keyner García, Angel Guzmán y Hernando De Moya</span>
+            <div class="mb-2">
+                <a href="#" class="mx-2">Política de Privacidad</a>
+                <a href="#" class="mx-2">Términos de Servicio</a>
+            </div>
+            <div>
+                <a href="#" class="mx-2"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="mx-2"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="mx-2"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/profile.js"></script>
+    <script src="../js/auth.js"></script>
+</body>
+
+</html>

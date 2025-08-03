@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmprendeU | Gestionar Productos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .navbar {
+            background-color: #0056b3;
+        }
+
+        .navbar-brand {
+            font-size: 1.8rem;
+            color: #fff;
+        }
+
+        .nav-link {
+            color: #fff;
+        }
+
+        .nav-link:hover {
+            color: #ff7f50;
+        }
+
+        .btn-custom {
+            background-color: #ff7f50;
+            border: none;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 25px;
+        }
+
+        .btn-custom:hover {
+            background-color: #e06c40;
+        }
+
+        .card {
+            border: none;
+            border-radius: 15px;
+            transition: transform 0.3s;
+            margin-bottom: 20px;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        footer {
+            background-color: #0056b3;
+            color: #fff;
+            padding: 20px 0;
+        }
+
+        footer a {
+            color: #ff7f50;
+        }
+
+        footer a:hover {
+            color: #e06c40;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-header-custom {
+            background-color: #0056b3;
+            color: #fff;
+            text-align: center;
+            padding: 30px;
+            position: relative;
+        }
+
+        .modal-header-custom .close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            color: #fff;
+            opacity: 1;
+        }
+
+        .profile-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 150px;
+            background: linear-gradient(45deg, #007bff, #00c6ff);
+            z-index: -1;
+        }
+
+        .profile-icon-large {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            position: relative;
+            top: -60px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .profile-info h4 {
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .profile-info p {
+            margin: 0;
+            color: #666;
+        }
+
+        .profile-info div {
+            margin-bottom: 15px;
+        }
+
+        .profile-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .profile-stats div {
+            text-align: center;
+        }
+
+        .profile-stats h5 {
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #0056b3;
+        }
+
+        .profile-stats span {
+            color: #666;
+        }
+
+        .modal-footer-custom {
+            border-top: 1px solid #e9ecef;
+            padding-top: 15px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">EmprendeU</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item" id="loginButton">
+                        <a class="nav-link btn-custom ml-2" href="login.html">Iniciar Sesión / Registrarse</a>
+                    </li>
+                    <li class="nav-item" id="profileButtonWrapper" style="display:none;">
+                        <button class="btn btn-outline-light" id="profileButton" data-toggle="modal"
+                            data-target="#profileModal">
+                            <i class="fas fa-user-circle"></i> <span id="profileName"></span>
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn btn-outline-light ml-2" data-toggle="modal" data-target="#optionsModal">
+                            <i class="fas fa-cogs"></i> Opciones
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-5 flex-grow-1">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <section id="manage-products-section">
+                    <h5 class="text-center mb-4">Añadir Producto</h5>
+                    <form id="addProductForm">
+                        <div class="form-group">
+                            <label for="productName"><i class="fas fa-tag"></i> Nombre del Producto</label>
+                            <input type="text" class="form-control" id="productName" placeholder="Ingresa el nombre del producto" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="productDescription"><i class="fas fa-align-left"></i> Descripción</label>
+                            <textarea class="form-control" id="productDescription" rows="4" placeholder="Describe el producto" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="productPrice"><i class="fas fa-dollar-sign"></i> Precio</label>
+                            <input type="number" class="form-control" id="productPrice" placeholder="Ingresa el precio" required>
+                        </div>
+                        <button type="submit" class="btn btn-custom btn-block">Añadir Producto</button>
+                    </form>
+                    <div id="productList" class="mt-5">
+                        <h5 class="text-center">Lista de Productos</h5>
+                        <!-- Los productos añadidos aparecerán aquí -->
+                        <div class="card shadow-sm mt-3" id="product-template" style="display: none;">
+                            <div class="card-body">
+                                <h5 class="card-title">Producto Ejemplo</h5>
+                                <p class="card-text">Este es un producto de ejemplo con una breve descripción.</p>
+                                <p class="card-text"><strong>Precio: </strong>$100.00</p>
+                                <button class="btn btn-outline-danger btn-sm">Eliminar</button>
+                                <button class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#editProductModal">Editar</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para editar producto -->
+    <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editProductModalLabel">Editar Producto</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="editProductForm">
+                        <div class="form-group">
+                            <label for="editProductName"><i class="fas fa-tag"></i> Nombre del Producto</label>
+                            <input type="text" class="form-control" id="editProductName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editProductDescription"><i class="fas fa-align-left"></i> Descripción</label>
+                            <textarea class="form-control" id="editProductDescription" rows="4" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="editProductPrice"><i class="fas fa-dollar-sign"></i> Precio</label>
+                            <input type="number" class="form-control" id="editProductPrice" required>
+                        </div>
+                        <button type="submit" class="btn btn-custom btn-block">Guardar Cambios</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Perfil -->
+    <div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header modal-header-custom">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <div class="profile-bg"></div>
+                </div>
+                <div class="profile-icon-large">
+                    <i class="fas fa-user fa-4x text-primary"></i>
+                </div>
+                <div class="profile-info">
+                    <div>
+                        <h4 id="profileModalName">Nombre del Usuario</h4>
+                        <p id="profileModalEmail">correo@ejemplo.com</p>
+                    </div>
+                </div>
+                <div class="modal-footer modal-footer-custom">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
+                    <button id="logoutLink" class="btn btn-danger"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal de Opciones -->
+    <div class="modal fade" id="optionsModal" tabindex="-1" aria-labelledby="optionsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-info text-white">
+                    <h5 class="modal-title" id="optionsModalLabel">Opciones</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a href="admin.html" class="btn btn-block btn-outline-primary">
+                                <i class="fas fa-tachometer-alt"></i> Panel de Administración
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="ver-productos.html" class="btn btn-block btn-outline-success">
+                                <i class="fas fa-box-open"></i> Ver Productos
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="gestionar-productos.html" class="btn btn-block btn-outline-warning">
+                                <i class="fas fa-tools"></i> Gestionar Productos
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="soporte-productos.html" class="btn btn-block btn-outline-danger">
+                                <i class="fas fa-headset"></i> Soporte a Productos
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-footer modal-footer-custom">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="mt-auto text-center">
+        <div class="container">
+            <span class="d-block mb-2">&copy; 2023 EmprendeU. Keyner García, Angel Guzmán y Hernando De Moya</span>
+            <div class="mb-2">
+                <a href="#" class="mx-2">Política de Privacidad</a>
+                <a href="#" class="mx-2">Términos de Servicio</a>
+            </div>
+            <div>
+                <a href="#" class="mx-2"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="mx-2"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="mx-2"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="../js/check.js"></script>
+    <script src="../js/bot.js"></script>
+    <script src="../js/profile.js"></script>
+    <script src="../js/manage_products.js"></script>
+</body>
+
+</html>

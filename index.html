@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmprendeU | Inicio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/styles.css">
+    <style>
+        /* Estilos adicionales para los modales */
+        .modal-content {
+            background-color: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-header-custom {
+            background-color: #0056b3;
+            color: #fff;
+            text-align: center;
+            padding: 30px;
+            position: relative;
+        }
+
+        .modal-header-custom .close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            color: #fff;
+            opacity: 1;
+        }
+
+        .profile-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 150px;
+            background: linear-gradient(45deg, #007bff, #00c6ff);
+            z-index: -1;
+        }
+
+        .profile-icon-large {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            position: relative;
+            top: -60px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .profile-info h4 {
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .profile-info p {
+            margin: 0;
+            color: #666;
+        }
+
+        .profile-info div {
+            margin-bottom: 15px;
+        }
+
+        .profile-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .profile-stats div {
+            text-align: center;
+        }
+
+        .profile-stats h5 {
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #0056b3;
+        }
+
+        .profile-stats span {
+            color: #666;
+        }
+
+        .modal-footer-custom {
+            border-top: 1px solid #e9ecef;
+            padding-top: 15px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">EmprendeU</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item" id="loginButton">
+                        <a class="nav-link btn-custom ml-2" href="./html/login.html">Iniciar Sesión / Registrarse</a>
+                    </li>
+                    <li class="nav-item" id="profileButtonWrapper" style="display:none;">
+                        <button class="btn btn-outline-light" id="profileButton" data-toggle="modal"
+                            data-target="#profileModal">
+                            <i class="fas fa-user-circle"></i> <span id="profileName"></span>
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn btn-outline-light ml-2" data-toggle="modal" data-target="#optionsModal">
+                            <i class="fas fa-cogs"></i> Opciones
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        <div class="text-center mb-5">
+            <h1 class="display-4 font-weight-bold mb-3">Bienvenido a EmprendeU</h1>
+            <a class="btn btn-custom btn-lg" href="./html/ver-productos.html">Ver Productos</a>
+        </div>
+
+        <section class="my-5" id="services">
+            <h2 class="h4 mb-4 text-center font-weight-bold text-uppercase">Nuestros Servicios</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-lg-4">
+                    <div class="card text-center h-100 shadow">
+                        <div class="card-body">
+                            <div class="icon mb-3">
+                                <i class="fas fa-users fa-3x"></i>
+                            </div>
+                            <h3 class="h5 font-weight-bold">Cómo Funciona</h3>
+                            <p class="card-text">Los estudiantes pueden registrarse en la plataforma y comenzar a listar sus productos y servicios. Otros estudiantes pueden explorar y comprar estos productos directamente a través de la plataforma.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card text-center h-100 shadow">
+                        <div class="card-body">
+                            <div class="icon mb-3">
+                                <i class="fas fa-lightbulb fa-3x"></i>
+                            </div>
+                            <h3 class="h5 font-weight-bold">Estrategia</h3>
+                            <p class="card-text">Consultoría en planificación y ejecución de estrategias tecnológicas.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card text-center h-100 shadow">
+                        <div class="card-body">
+                            <div class="icon mb-3">
+                                <i class="fas fa-chart-line fa-3x"></i>
+                            </div>
+                            <h3 class="h5 font-weight-bold">Beneficios</h3>
+                            <p class="card-text">Generación de ingresos adicionales, fomento del espíritu emprendedor, mejora del bienestar financiero y mental, y desarrollo de una comunidad universitaria colaborativa.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="my-5" id="about">
+            <h2 class="h4 mb-4 text-center font-weight-bold text-uppercase">Sobre Nosotros</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <p class="text-center">EmprendeU es una plataforma diseñada para ayudar a los estudiantes a vender productos y servicios dentro de su comunidad universitaria, generando ingresos adicionales y fomentando el espíritu emprendedor.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modals -->
+    <div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header modal-header-custom">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <div class="profile-bg"></div>
+                </div>
+                <div class="profile-icon-large">
+                    <i class="fas fa-user fa-4x text-primary"></i>
+                </div>
+                <div class="profile-info">
+                    <div>
+                        <h4 id="profileModalName">Nombre del Usuario</h4>
+                        <p id="profileModalEmail">correo@ejemplo.com</p>
+                    </div>
+                </div>
+                <div class="modal-footer modal-footer-custom">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
+                    <button id="logoutLink" class="btn btn-danger"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="optionsModal" tabindex="-1" aria-labelledby="optionsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-info text-white">
+                    <h5 class="modal-title" id="optionsModalLabel">Opciones</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a href="./html/admin.html" class="btn btn-block btn-outline-primary">
+                                <i class="fas fa-tachometer-alt"></i> Panel de Administración
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="./html/ver-productos.html" class="btn btn-block btn-outline-success">
+                                <i class="fas fa-box-open"></i> Ver Productos
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="./html/gestionar-productos.html" class="btn btn-block btn-outline-warning">
+                                <i class="fas fa-tools"></i> Gestionar Productos
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="./html/soporte-productos.html" class="btn btn-block btn-outline-danger">
+                                <i class="fas fa-headset"></i> Soporte a Productos
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-footer modal-footer-custom">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="container">
+            <span class="d-block mb-2">&copy; 2023 EmprendeU. Keyner García, Angel Guzmán y Hernando De Moya</span>
+            <div class="mb-2">
+                <a href="#" class="mx-2">Política de Privacidad</a>
+                <a href="#" class="mx-2">Términos de Servicio</a>
+            </div>
+            <div>
+                <a href="#" class="mx-2"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="mx-2"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="mx-2"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="./js/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/profile_index.js"></script>
+    <script src="./js/bot.js"></script>
+</body>
+
+</html>
